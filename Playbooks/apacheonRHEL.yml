@@ -1,0 +1,11 @@
+---
+- hosts: RHEL
+  become: yes
+  tasks:
+    - name: This will install Apache on RHEL
+      yum:
+        name: httpd
+        state: present
+    - name: This will restart Service
+      service:
+        state: restarted

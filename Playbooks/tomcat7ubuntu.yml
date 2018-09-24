@@ -1,0 +1,9 @@
+---
+- hosts: ubuntu
+  tasks:
+  - name: This will update cache
+    apt:
+      update_cache: yes
+  - name: This will update tomcat7
+    apt:
+      name: tomcat7 
