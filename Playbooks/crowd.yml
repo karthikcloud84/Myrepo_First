@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: Install pip
+      apt: name=python-pip state=present
+
+    - name: Install docker-py
+      pip: name=docker-py
+
+    - name: Pull Docker image
+      docker_image:
+        name: centos
+    
+    - name: Build Docker image from Dockerfile
+      docker_image:
+        name: crowd
+        path: atlassian
+        state: build
+        
+    - name: Running the container
+      docker_container:
+        image: crowd:latest
+        path: atlassian
+        state: running
